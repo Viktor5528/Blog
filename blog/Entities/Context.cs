@@ -16,7 +16,7 @@ namespace blog
         
         public Context(DbContextOptions<Context> dbContext) : base(dbContext)
         {
-        
+          
             
         }
 
@@ -25,7 +25,7 @@ namespace blog
         {
             mb.Entity<Comment>().HasOne<User>().WithMany().HasForeignKey(hj => hj.UserID);
             mb.Entity<Comment>().HasOne<Post>().WithMany(x => x.Comments).HasForeignKey(y => y.PostID);
-            //mb.Entity<Post>().HasOne<User>().WithMany(x => x.Posts).HasForeignKey(y => y.AuthorID).OnDelete(DeleteBehavior.NoAction);
+            mb.Entity<Post>().HasOne<User>().WithMany(x => x.Posts).HasForeignKey(y => y.AuthorID).OnDelete(DeleteBehavior.NoAction);
         }
 
     }
