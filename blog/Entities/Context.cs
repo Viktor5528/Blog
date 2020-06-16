@@ -16,8 +16,8 @@ namespace blog
         
         public Context(DbContextOptions<Context> dbContext) : base(dbContext)
         {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
+        
+            
         }
 
 

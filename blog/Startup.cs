@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using blog.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+
 
 namespace blog
 {
@@ -27,6 +29,9 @@ namespace blog
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddTransient<UserRepo>();
+            services.AddTransient<PostRepo>();
+            services.AddTransient<CommentRepo>();
             services.AddDbContext<Context>(options => options.UseSqlServer(@"Server=POEBATVOOBSCHE\SQLEXPRESS;Database=Blog;Trusted_Connection=True;"));
         }
 
