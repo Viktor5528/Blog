@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using blog.Entities; 
+using blog.Entities;
+using blog;
 
 namespace TokenApp.Controllers
 {
@@ -13,12 +14,11 @@ namespace TokenApp.Controllers
     [Route("[controller]")]
     public class AccountController : ControllerBase
     {
-        // тестовые данные вместо использования базы данных
-        private List<User> people = new List<User>
+        Context bd;
+       public AccountController(Context context)
         {
-            new User {Login="admin@gmail.com", Password="12345", IsAuthor = true },
-            new User {Login="qwerty@gmail.com", Password="55555", IsAuthor = false }
-        };
+            bd = context;
+        }
 
         [HttpPost("Login")]
         public IActionResult Login(string username, string password)
@@ -51,7 +51,7 @@ namespace TokenApp.Controllers
 
         private ClaimsIdentity GetIdentity(string username, string password)
         {
-            User user = people.FirstOrDefault(x => x.Login == username && x.Password == password);
+            User user = bd.Users.FirstOrDefault(x => x.Login == username && x.Password == password);
             if (user != null)
             {
                 var claims = new List<Claim>
