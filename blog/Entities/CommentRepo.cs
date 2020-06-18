@@ -1,11 +1,12 @@
-﻿using System;
+﻿using blog.Entities.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace blog.Entities
 {
-    public class CommentRepo
+    public class CommentRepo:ICommentRepo
     {
         Context db;
         public CommentRepo(Context context)

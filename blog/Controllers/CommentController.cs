@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using blog.Entities;
+using blog.Entities.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace blog.Controllers
 {
@@ -12,8 +9,8 @@ namespace blog.Controllers
     [Route("[controller]")]
     public class CommentController : ControllerBase
     {
-        CommentRepo _comment;
-        public CommentController(CommentRepo comment)
+        ICommentRepo _comment;
+        public CommentController(ICommentRepo comment)
         {
             _comment = comment; ;
         }

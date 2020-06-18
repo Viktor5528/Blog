@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using blog.Entities.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace blog.Entities
 {
-    public class PostRepo
+    public class PostRepo:IPostRepo
     {
         Context db;
         public PostRepo(Context context)

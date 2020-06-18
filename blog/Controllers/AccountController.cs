@@ -15,7 +15,7 @@ namespace TokenApp.Controllers
     public class AccountController : ControllerBase
     {
         Context bd;
-       public AccountController(Context context)
+        public AccountController(Context context)
         {
             bd = context;
         }

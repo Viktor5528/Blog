@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace blog.Entities
 {
-    public class UserRepo
+    public class UserRepo:IUserRepo
     {
         Context db;
         public UserRepo(Context context)

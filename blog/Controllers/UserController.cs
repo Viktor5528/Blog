@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using blog.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace blog.Controllers
 {
@@ -12,8 +8,8 @@ namespace blog.Controllers
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        UserRepo _user;
-        public UserController(UserRepo user)
+        IUserRepo _user;
+        public UserController(IUserRepo user)
         {
             _user = user;
         }
@@ -39,5 +35,14 @@ namespace blog.Controllers
            return _user.CreateUser(user);
 
         }
+        [HttpPut]
+        public void Update([FromBody]Upd upd)
+        {
+            var user = _user.GetByID(upd.Id);
+            user.Login = upd.Login;
+            user.Password = upd.Password;
+            _user.Update(user);
+        }
+       
     }
 }

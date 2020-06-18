@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using blog.Entities;
+using blog.Entities.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace blog.Controllers
 {
@@ -13,8 +10,8 @@ namespace blog.Controllers
     [Route("[controller]")]
     public class PostController : ControllerBase
     {
-        PostRepo _post;
-        public PostController(PostRepo post)
+        IPostRepo _post;
+        public PostController(IPostRepo post)
         {
             _post = post; ;
         }
@@ -46,5 +43,6 @@ namespace blog.Controllers
         {
             _post.Update(post);
         }
+        
     }
 }

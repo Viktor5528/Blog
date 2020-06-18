@@ -1,4 +1,5 @@
 using blog.Entities;
+using blog.Entities.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,9 +25,9 @@ namespace blog
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddTransient<UserRepo>();
-            services.AddTransient<PostRepo>();
-            services.AddTransient<CommentRepo>();
+            services.AddTransient<IUserRepo, UserRepo>();
+            services.AddTransient<IPostRepo, PostRepo>();
+            services.AddTransient<ICommentRepo, CommentRepo>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
                     {
