@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using blog.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,9 +31,22 @@ namespace blog.Controllers
             _user.Delete(id);
         }
         [HttpPost]
-        public int Create(User user)
+        public int Create([FromBody]User user)
         {
-           return _user.CreateUser(user);
+            if (!user.Login.EndsWith(".com"))
+            {
+                throw new Exception("use a normal email address");
+            }
+            if (user.Age < 16)
+            {
+                throw new Exception("get some experience, youngster");
+            }
+            if (user.Name.Length > 20)
+            {
+                throw new Exception("I've never seen such long names before");
+            }
+            return _user.CreateUser(user);
+            
 
         }
         [HttpPut]

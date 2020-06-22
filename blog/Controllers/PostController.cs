@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using blog.Entities;
 using blog.Entities.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -35,6 +36,10 @@ namespace blog.Controllers
         [HttpPost]
         public int Create(Post post)
         {
+            if(post.Description ==null ||  post.Title == null)
+            {
+                throw new Exception("All fields must be filled in");
+            }
             return _post.Create(post);
 
         }
